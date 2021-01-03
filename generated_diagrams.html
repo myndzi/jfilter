@@ -1,0 +1,893 @@
+
+<!-- This is a generated file -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+    background-color: hsl(30, 20%, 95%)
+  }
+</style>
+
+
+<link rel='stylesheet' href='https://unpkg.com/chevrotain@7.1.0/diagrams/diagrams.css'>
+
+<script src='https://unpkg.com/chevrotain@7.1.0/diagrams/vendor/railroad-diagrams.js'></script>
+<script src='https://unpkg.com/chevrotain@7.1.0/diagrams/src/diagrams_builder.js'></script>
+<script src='https://unpkg.com/chevrotain@7.1.0/diagrams/src/diagrams_behavior.js'></script>
+<script src='https://unpkg.com/chevrotain@7.1.0/diagrams/src/main.js'></script>
+
+<div id="diagrams" align="center"></div>    
+
+<script>
+    window.serializedGrammar = [
+  {
+    "type": "Rule",
+    "name": "parse",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "MaybeNegated",
+        "idx": 0
+      },
+      {
+        "type": "Repetition",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Option",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Infix",
+                "label": "Infix",
+                "idx": 0,
+                "pattern": "NOT_APPLICABLE"
+              }
+            ]
+          },
+          {
+            "type": "NonTerminal",
+            "name": "MaybeNegated",
+            "idx": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "MaybeNegated",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "NOT",
+            "label": "NOT",
+            "idx": 0,
+            "pattern": "NOT"
+          }
+        ]
+      },
+      {
+        "type": "NonTerminal",
+        "name": "ExpressionOrGroup",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "ExpressionOrGroup",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "Expression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "Group",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "Group",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LParen",
+        "label": "(",
+        "idx": 0,
+        "pattern": "("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "parse",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "RParen",
+        "label": ")",
+        "idx": 0,
+        "pattern": ")"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "Expression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "ParseField",
+        "idx": 0
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "NumericExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "TextExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "InExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "RegexpExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "ValueExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "RangeExpression",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "ParseField",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Field",
+        "label": "Field",
+        "idx": 0,
+        "pattern": "[A-Za-z]\\w*"
+      },
+      {
+        "type": "Repetition",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "Indexed",
+                    "idx": 0
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "Period",
+                    "label": ".",
+                    "idx": 0,
+                    "pattern": "."
+                  },
+                  {
+                    "type": "Terminal",
+                    "name": "Field",
+                    "label": "Field",
+                    "idx": 2,
+                    "pattern": "[A-Za-z]\\w*"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "Indexed",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LSquare",
+        "label": "[",
+        "idx": 0,
+        "pattern": "["
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Asterisk",
+                "label": "*",
+                "idx": 0,
+                "pattern": "*"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "NumberLiteral",
+                "label": "NumberLiteral",
+                "idx": 0,
+                "pattern": "[1-9][0-9]*"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "TextValue",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RSquare",
+        "label": "]",
+        "idx": 0,
+        "pattern": "]"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "RangeExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "NOT",
+            "label": "NOT",
+            "idx": 0,
+            "pattern": "NOT"
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "IN",
+            "label": "IN",
+            "idx": 0,
+            "pattern": "IN"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RANGE",
+        "label": "RANGE",
+        "idx": 0,
+        "pattern": "RANGE"
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "LParen",
+                "label": "(",
+                "idx": 0,
+                "pattern": "("
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "LSquare",
+                "label": "[",
+                "idx": 0,
+                "pattern": "["
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "NonTerminal",
+        "name": "NumberOrRelTime",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "Comma",
+        "label": ",",
+        "idx": 0,
+        "pattern": ","
+      },
+      {
+        "type": "NonTerminal",
+        "name": "NumberOrRelTime",
+        "idx": 2
+      },
+      {
+        "type": "Alternation",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "RParen",
+                "label": ")",
+                "idx": 0,
+                "pattern": ")"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "RSquare",
+                "label": "]",
+                "idx": 0,
+                "pattern": "]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "InExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "NOT",
+            "label": "NOT",
+            "idx": 0,
+            "pattern": "NOT"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "IN",
+        "label": "IN",
+        "idx": 0,
+        "pattern": "IN"
+      },
+      {
+        "type": "Terminal",
+        "name": "LParen",
+        "label": "(",
+        "idx": 0,
+        "pattern": "("
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": ",",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "TextValue",
+                    "idx": 0
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "NumberLiteral",
+                    "label": "NumberLiteral",
+                    "idx": 0,
+                    "pattern": "[+-]?(0|[1-9]\\d*)(\\.\\d+)?([eE][+-]?\\d+)?"
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "Value",
+                    "label": "Value",
+                    "idx": 0,
+                    "pattern": "NOT_APPLICABLE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RParen",
+        "label": ")",
+        "idx": 0,
+        "pattern": ")"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "NumericExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Exclaim",
+            "label": "!",
+            "idx": 0,
+            "pattern": "!"
+          }
+        ]
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Equal",
+                "label": "=",
+                "idx": 1,
+                "pattern": "="
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Less",
+                "label": "<",
+                "idx": 0,
+                "pattern": "<"
+              },
+              {
+                "type": "Option",
+                "idx": 2,
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "Equal",
+                    "label": "=",
+                    "idx": 2,
+                    "pattern": "="
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Greater",
+                "label": ">",
+                "idx": 0,
+                "pattern": ">"
+              },
+              {
+                "type": "Option",
+                "idx": 3,
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "Equal",
+                    "label": "=",
+                    "idx": 3,
+                    "pattern": "="
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "NonTerminal",
+        "name": "NumberOrRelTime",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "NumberOrRelTime",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "NumberLiteral",
+        "label": "NumberLiteral",
+        "idx": 0,
+        "pattern": "[+-]?(0|[1-9]\\d*)(\\.\\d+)?([eE][+-]?\\d+)?"
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "RelTime",
+            "label": "RelTime",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "ValueExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Exclaim",
+            "label": "!",
+            "idx": 0,
+            "pattern": "!"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "Equal",
+        "label": "=",
+        "idx": 0,
+        "pattern": "="
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "True",
+                "label": "True",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "False",
+                "label": "False",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Null",
+                "label": "Null",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Undefined",
+                "label": "Undefined",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "RegexpExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Tilde",
+        "label": "~",
+        "idx": 0,
+        "pattern": "~"
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Equal",
+                "label": "=",
+                "idx": 0,
+                "pattern": "="
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Exclaim",
+                "label": "!",
+                "idx": 0,
+                "pattern": "!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RegexpLiteral",
+        "label": "RegexpLiteral",
+        "idx": 0,
+        "pattern": "\\/(?:[^/\\[\\\\]|\\\\.|\\[(?:[^\\]\\\\]|\\\\.)*\\])+\\/[imgu]*"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "TextExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Exclaim",
+            "label": "!",
+            "idx": 0,
+            "pattern": "!"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "Equal",
+        "label": "=",
+        "idx": 0,
+        "pattern": "="
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Equal",
+            "label": "=",
+            "idx": 2,
+            "pattern": "="
+          }
+        ]
+      },
+      {
+        "type": "NonTerminal",
+        "name": "TextValue",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "TextValue",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Field",
+                "label": "Field",
+                "idx": 0,
+                "pattern": "[A-Za-z]\\w*"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "SingleQuoted",
+                "label": "SingleQuoted",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "DoubleQuoted",
+                "label": "DoubleQuoted",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+</script>
+
+<script>
+    var diagramsDiv = document.getElementById("diagrams");
+    main.drawDiagramsFromSerializedGrammar(serializedGrammar, diagramsDiv);
+</script>

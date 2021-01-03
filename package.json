@@ -1,0 +1,36 @@
+{
+    "name": "jfilter",
+    "version": "1.0.0",
+    "description": "Turns a splunk-like query string into a function that matches arbitrary javascript objects",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/myndzi/jfilter.git"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "jest"
+    },
+    "prepublish": "rm dist/* && tsc && jest --coverage",
+    "files": [
+        "dist/*.js",
+        "dist/*.d.ts",
+        "!dist/*.test.js",
+        "!dist/*.test.d.ts"
+    ],
+    "author": "Kris Reeves",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/double-ended-queue": "^2.1.1",
+        "@types/sinon": "^9.0.10",
+        "jest": "^26.6.3",
+        "prettier": "^2.2.1",
+        "sinon": "^9.2.2",
+        "source-map-support": "^0.5.19",
+        "ts-jest": "^26.4.4"
+    },
+    "dependencies": {
+        "chevrotain": "^7.1.0",
+        "double-ended-queue": "^2.1.0-0"
+    }
+}

@@ -654,7 +654,12 @@ export class ParseError extends Error {
 export const parser = new QueryParser();
 
 // parse our search DSL into a filter function
-export const parse = (text: string, debug = false) => {
+export function parse(text: string): (val: any) => boolean;
+export function parse<B extends boolean>(
+    text: string,
+    debug: B
+): B extends true ? string : (val: any) => boolean;
+export function parse(text: string, debug: boolean = false): string | ((val: any) => boolean) {
     // tokenize...
     const lexResult = lexer.tokenize(text);
     // console.log(lexResult.tokens.map((v) => [v.tokenType.name, v.image]));
@@ -674,4 +679,4 @@ export const parse = (text: string, debug = false) => {
     }
 
     return filterFn;
-};
+}

@@ -1,6 +1,6 @@
 {
     "name": "jfilter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Turns a splunk-like query string into a function that matches arbitrary javascript objects",
     "repository": {
         "type": "git",

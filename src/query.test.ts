@@ -223,7 +223,7 @@ describe('simple expressions', () => {
             true
         );
         expect(str).toMatchInlineSnapshot(
-            `"_or( _and( _and( _prop(\\"t\\")(_custom(_true())), _prop(\\"foo\\")(_custom(_rex(/bar/))) ), _prop(\\"lar\\")(_custom(_in([1,2,3]))) ), _and( _prop(\\"n\\")(_custom(_range( 1, true, 3, true ))), _prop(\\"foo\\")(_custom(_ciEq(\\"bar\\"))) ) )"`
+            `"_or( _and( _and( _prop("t")(_custom(_true())), _prop("foo")(_custom(_rex(/bar/))) ), _prop("lar")(_custom(_in([1,2,3]))) ), _and( _prop("n")(_custom(_range( 1, true, 3, true ))), _prop("foo")(_custom(_ciEq("bar"))) ) )"`
         );
     });
 });

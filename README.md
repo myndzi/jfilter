@@ -32,7 +32,7 @@ Mostly, a friendly syntax (see the examples below for the full list). But you ca
 
 ## Syntax
 
-You can see a [rail diagram for the grammar](https://ghcdn.rawgit.org/myndzi/jfilter/main/generated_diagrams.html), but here's the breakdown.
+You can see a [rail diagram for the grammar](https://myndzi.github.io/jfilter/generated_diagrams.html), but here's the breakdown.
 
 ### Accessors
 
@@ -110,7 +110,10 @@ Accessors call _forwards_ with a subset of the data.
 Predicates, on the other hand, compare against the data they receive and return a result. An example is `_gt`, which is just:
 
 ```ts
-export const _gt = <T extends number | Date>(rhs: T) => (lhs: T): boolean => +lhs > +rhs;
+export const _gt =
+    <T extends number | Date>(rhs: T) =>
+    (lhs: T): boolean =>
+        +lhs > +rhs;
 ```
 
 Partial application is used in order to build up a sequence of operations that all happen in aggregate at the end.

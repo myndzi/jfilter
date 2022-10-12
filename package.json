@@ -1,6 +1,6 @@
 {
     "name": "jfilter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Turns a splunk-like query string into a function that matches arbitrary javascript objects",
     "repository": {
         "type": "git",
@@ -16,7 +16,9 @@
         "dist/*.js",
         "dist/*.d.ts",
         "!dist/*.test.js",
-        "!dist/*.test.d.ts"
+        "!dist/*.test.d.ts",
+        "LICENSE",
+        "README.md"
     ],
     "author": "Kris Reeves",
     "license": "ISC",

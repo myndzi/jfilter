@@ -1,4 +1,4 @@
-import type { Predicate } from './predicates';
+import type { Predicate } from './predicates.js';
 
 export const VALUE: unique symbol = Symbol('jfilter.match');
 export type CustomAccessor = (fn: Predicate) => boolean;

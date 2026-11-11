@@ -1,4 +1,4 @@
-import * as fns from './accessors';
+import * as fns from './accessors.js';
 
 describe('accessors', () => {
     describe('_prop', () => {

@@ -1,6 +1,7 @@
 {
     "name": "jfilter",
     "version": "1.0.2",
+    "type": "module",
     "description": "Turns a splunk-like query string into a function that matches arbitrary javascript objects",
     "repository": {
         "type": "git",
@@ -8,10 +9,21 @@
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "scripts": {
-        "test": "jest"
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
     },
-    "prepublish": "rm dist/* && tsc && jest --coverage",
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "scripts": {
+        "test": "vitest run",
+        "coverage": "vitest run --coverage",
+        "build": "rm -rf dist && tsc",
+        "prepublishOnly": "npm run build && npm test"
+    },
     "files": [
         "dist/*.js",
         "dist/*.d.ts",
@@ -23,15 +35,12 @@
     "author": "Kris Reeves",
     "license": "ISC",
     "devDependencies": {
-        "@types/double-ended-queue": "^2.1.1",
-        "@types/jest": "^30.0.0",
-        "@types/sinon": "^10.0.13",
-        "jest": "^30.5.2",
-        "prettier": "^2.7.1",
-        "sinon": "^14.0.0",
-        "source-map-support": "^0.5.21",
-        "ts-jest": "^29.0.0",
-        "typescript": "^4.8.3"
+        "@types/double-ended-queue": "^2.1.7",
+        "@types/node": "^26.6.6",
+        "@vitest/coverage-v8": "^5.1.0",
+        "prettier": "^3.10.0",
+        "typescript": "^7.0.2",
+        "vitest": "^5.1.0"
     },
     "dependencies": {
         "chevrotain": "^13.2.0",

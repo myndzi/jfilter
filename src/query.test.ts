@@ -1,9 +1,8 @@
 import { inspect } from 'util';
-import sinon from 'sinon';
-import { parse, ParseError, _testable as qTestable } from './query';
-import * as _ from './predicates';
-import { VALUE } from './accessors';
-import { Predicate } from './predicates';
+import { parse, ParseError, _testable as qTestable } from './query.js';
+import * as _ from './predicates.js';
+import { VALUE } from './accessors.js';
+import { Predicate } from './predicates.js';
 
 type Op = string;
 type Val = string;
@@ -175,12 +174,12 @@ describe('cloneRegexWithY', () => {
 });
 
 describe('relOffset', () => {
-    let clock: sinon.SinonFakeTimers;
     beforeEach(() => {
-        clock = sinon.useFakeTimers();
+        vi.useFakeTimers();
+        vi.setSystemTime(0);
     });
     afterEach(() => {
-        clock.restore();
+        vi.useRealTimers();
     });
     it.each([
         ['s', 1000],
@@ -189,7 +188,7 @@ describe('relOffset', () => {
         ['d', 86400 * 1000],
     ])('offsets by -1%p', (unit, ms) => {
         const fixed = 86400 * 2;
-        clock.tick(fixed);
+        vi.advanceTimersByTime(fixed);
         expect(+qTestable.relOffset(-1, unit)).toBe(fixed - ms);
     });
     it.each([
@@ -199,7 +198,7 @@ describe('relOffset', () => {
         ['d', 86400],
     ])('rounds by %p', (unit, result) => {
         const fixed = (86400 + 3600 + 60 + 1) * 1000 + 1;
-        clock.tick(fixed);
+        vi.advanceTimersByTime(fixed);
         expect(+qTestable.relOffset(0, 's', unit) / 1000).toBe(result);
     });
 });

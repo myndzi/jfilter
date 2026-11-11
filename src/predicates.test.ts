@@ -1,4 +1,4 @@
-import * as fns from './predicates';
+import * as fns from './predicates.js';
 
 // writing these tests is mostly useless, but i guess it verifies
 // that there aren't any strangenesses, like flipping an operator

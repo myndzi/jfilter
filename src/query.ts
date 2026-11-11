@@ -6,7 +6,7 @@ import {
     ILexingError,
 } from 'chevrotain';
 import type { TokenType, ITokenConfig } from 'chevrotain';
-import { Predicate, _globCi } from './predicates';
+import { Predicate, _globCi } from './predicates.js';
 
 export const _testable: { [key: string]: Function } = {};
 
@@ -287,10 +287,10 @@ import {
     _or,
     _range,
     _ciEq,
-} from './predicates';
+} from './predicates.js';
 
-import { _custom, _every, _index, _prop, _some } from './accessors';
-import { ShuntingYard } from './shuntingyard';
+import { _custom, _every, _index, _prop, _some } from './accessors.js';
+import { ShuntingYard } from './shuntingyard.js';
 
 const unitFns = {
     s: (d: Date, v: number) => d.setUTCSeconds(d.getUTCSeconds() + v),

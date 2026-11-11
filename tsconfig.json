@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ES6",
+        "module": "NodeNext",
+        "target": "ES2022",
         "sourceMap": true,
         "esModuleInterop": true,
         "outDir": "dist",
+        "rootDir": "src",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noImplicitAny": true,
@@ -14,7 +15,9 @@
         "strictBindCallApply": true,
         "noImplicitThis": true,
         "alwaysStrict": true,
-        "declaration": true
+        "declaration": true,
+        "types": ["node", "vitest/globals"],
+        "moduleResolution": "NodeNext"
     },
     "include": ["src/*.ts"],
     "exclude": ["node_modules", "dist"],

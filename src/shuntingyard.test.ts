@@ -1,4 +1,4 @@
-import { ShuntingYard } from './shuntingyard';
+import { ShuntingYard } from './shuntingyard.js';
 
 const AND = Symbol('AND');
 const OR = Symbol('OR');

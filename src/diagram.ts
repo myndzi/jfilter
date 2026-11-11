@@ -1,8 +1,8 @@
 import { resolve } from 'path';
 import { writeFileSync } from 'fs';
 import { createSyntaxDiagramsCode } from 'chevrotain';
-import { parser } from './query';
+import { parser } from './query.js';
 
 const serializedGrammar = parser.getSerializedGastProductions();
 const htmlText = createSyntaxDiagramsCode(serializedGrammar);
-writeFileSync(resolve(__dirname, '..', 'generated_diagrams.html'), htmlText);
+writeFileSync(resolve(import.meta.dirname, '..', 'generated_diagrams.html'), htmlText);

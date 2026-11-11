@@ -5,7 +5,7 @@
     "description": "Turns a splunk-like query string into a function that matches arbitrary javascript objects",
     "repository": {
         "type": "git",
-        "url": "https://github.com/myndzi/jfilter.git"
+        "url": "git+https://github.com/myndzi/jfilter.git"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
